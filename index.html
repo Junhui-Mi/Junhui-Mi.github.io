@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Junhui Mi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #2e6da4;
+      --text: #333;
+      --text-light: #555;
+      --bg: #fff;
+      --bg-alt: #f8f9fa;
+      --border: #e0e0e0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--bg);
+    }
+
+    /* Header */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 0;
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .social-links a {
+      color: #ccc;
+      margin-left: 16px;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+
+    .social-links a:hover { color: #fff; }
+
+    /* Navigation tabs */
+    nav {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 0;
+      margin-top: 16px;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 10px 24px;
+      color: #c0cfe0;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: 6px 6px 0 0;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+
+    nav ul li a.active {
+      color: var(--primary);
+      background: var(--bg);
+      font-weight: 600;
+    }
+
+    /* Main */
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Home tab */
+    .profile-section {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .profile-photo {
+      flex-shrink: 0;
+    }
+
+    .profile-photo img {
+      width: 220px;
+      height: 220px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .profile-info h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .profile-info .subtitle {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .profile-info .contact-links {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .profile-info .contact-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .profile-info .contact-links a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .bio { margin-top: 32px; }
+
+    .bio p {
+      margin-bottom: 16px;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .bio a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .bio a:hover {
+      text-decoration: underline;
+    }
+
+    .section-heading {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* Publications tab */
+    .pub-note {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 24px;
+    }
+
+    .pub-note a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .pub-note a:hover { text-decoration: underline; }
+
+    .pub-year {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 28px;
+      margin-bottom: 12px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pub-list {
+      list-style: none;
+    }
+
+    .pub-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+
+    .pub-list li:last-child { border-bottom: none; }
+
+    .pub-title {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .pub-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .pub-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .pub-authors {
+      color: var(--text-light);
+      font-size: 0.88rem;
+      margin-top: 2px;
+    }
+
+    .pub-authors .me {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .pub-venue {
+      color: var(--text-light);
+      font-style: italic;
+      font-size: 0.88rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #999;
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 680px) {
+      .profile-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .profile-info .contact-links {
+        justify-content: center;
+      }
+      .profile-photo img {
+        width: 180px;
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="site-name">Junhui Mi</div>
+      <div class="social-links">
+        <a href="mailto:junhuim@smu.edu" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://scholar.google.com/citations?user=Swcb8vMAAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        <a href="https://github.com/Junhui-Mi" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/junhui-mi-106810196/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home" class="tab-link active" data-tab="home">Home</a></li>
+        <li><a href="#publications" class="tab-link" data-tab="publications">Publications</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home Tab -->
+    <div id="home" class="tab-content active">
+      <div class="profile-section">
+        <div class="profile-photo">
+          <img src="Junhui_photo.jpg" alt="Junhui Mi">
+        </div>
+        <div class="profile-info">
+          <h1>Junhui Mi</h1>
+          <div class="subtitle">Ph.D. Student in Biostatistics | SMU &amp; UT Southwestern Medical Center</div>
+          <div class="contact-links">
+            <a href="mailto:junhuim@smu.edu"><i class="fas fa-envelope"></i> junhuim@smu.edu</a>
+            <a href="https://scholar.google.com/citations?user=Swcb8vMAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+            <a href="https://github.com/Junhui-Mi" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/junhui-mi-106810196/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bio">
+        <h2 class="section-heading">About</h2>
+        <p>
+          I am a Ph.D. student in the joint Biostatistics program at
+          <a href="https://www.smu.edu/dedman/academics/departments/statistics/people/graduate-students/mi-j" target="_blank">Southern Methodist University</a>
+          and UT Southwestern Medical Center.
+        </p>
+        <p>
+          My research centers on time-dependent covariate survival analysis, missing data imputation and predictive modeling,
+          and the development of AI agents for biomedical research and clinical trials. I am advised by
+          <a href="https://profiles.utsouthwestern.edu/profile/231462/wenqi-shi.html" target="_blank">Dr. Wenqi Shi</a>.
+        </p>
+        <p>
+          I previously worked as a biostatistician at the
+          <a href="https://www.lerner.ccf.org/quantitative-health/" target="_blank">Cleveland Clinic</a>
+          and as a data science intern at NewYork-Presbyterian Hospital. In these roles, I provided statistical consulting across
+          a broad range of clinical areas, including anesthesiology, cardiology, pediatrics, and oncology.
+          I collaborate closely with clinicians to design, analyze, and interpret clinical research studies.
+        </p>
+      </div>
+    </div>
+
+    <!-- Publications Tab -->
+    <div id="publications" class="tab-content">
+      <h2 class="section-heading">Publications</h2>
+      <p class="pub-note">
+        For the most up-to-date list, please visit my
+        <a href="https://scholar.google.com/citations?user=Swcb8vMAAAAJ&hl=en" target="_blank">Google Scholar</a> profile.
+      </p>
+
+      <div class="pub-year">2026</div>
+      <ul class="pub-list">
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1053/j.jvca.2025.10.035" target="_blank">Bedside Pericardiocentesis and Pericardial Drain Placement by Critical Care Physicians After Cardiac Surgery: A Retrospective Analysis</a>
+          </div>
+          <div class="pub-authors">C Donaldson, A Alzahrani, MG de Abreu, J Levasseur, J Tabah, S Alotaibi, E Harvester, N Hirz, <span class="me">J Mi</span>, F Bakaeen, M Tong, D Marsh</div>
+          <div class="pub-venue">Journal of Cardiothoracic and Vascular Anesthesia, 40(2), 554&ndash;560</div>
+        </li>
+      </ul>
+
+      <div class="pub-year">2025</div>
+      <ul class="pub-list">
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1002/sim.70203" target="_blank">Combining Missing Data Imputation and Internal Validation in Clinical Risk Prediction Models</a>
+          </div>
+          <div class="pub-authors"><span class="me">J Mi</span>, RD Tendulkar, SMC Sittenfeld, S Patil, EC Zabor</div>
+          <div class="pub-venue">Statistics in Medicine, 44(18&ndash;19)</div>
+        </li>
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1053/j.jvca.2025.06.011" target="_blank">Early Effect of Pulmonary Thromboendarterectomy on Right Ventricular-to-Pulmonary Artery Coupling</a>
+          </div>
+          <div class="pub-authors">A Alfirevic, M Geube, <span class="me">J Mi</span>, H Elgharably, M Tong, AE Duncan</div>
+          <div class="pub-venue">Journal of Cardiothoracic and Vascular Anesthesia, 39(11), 2989&ndash;2998</div>
+        </li>
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1097/ANA.0000000000001007" target="_blank">Duplex Ultrasound Screening for Deep Venous Thrombosis in Patients Undergoing Craniotomy for Intracranial Tumors: A Single Institutional Series</a>
+          </div>
+          <div class="pub-authors">R Avitsian, AM Mohammadi, J Beresian, AM Nuti, S Jolly, J Volovetz, T Avitsian, AS Budiansky, <span class="me">J Mi</span>, X Liu</div>
+          <div class="pub-venue">Journal of Neurosurgical Anesthesiology, 37(2), 232&ndash;238</div>
+        </li>
+      </ul>
+
+      <div class="pub-year">2024</div>
+      <ul class="pub-list">
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1213/ANE.0000000000006627" target="_blank">Arterial Hyperoxemia During Cardiopulmonary Bypass Was Not Associated With Worse Postoperative Pulmonary Function: A Retrospective Cohort Study</a>
+          </div>
+          <div class="pub-authors">M Kelava, AJ Milam, <span class="me">J Mi</span>, A Alfirevic, P Grady, S Unai, H Elgharably, K McCurry, M Koprivanac, A Duncan</div>
+          <div class="pub-venue">Anesthesia &amp; Analgesia, 138(5), 1003&ndash;1010</div>
+        </li>
+      </ul>
+
+      <div class="pub-year">2023</div>
+      <ul class="pub-list">
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1213/ANE.0000000000006247" target="_blank">Derivation and Validation of Clinical Phenotypes of the Cardiopulmonary Bypass-Induced Inflammatory Response</a>
+          </div>
+          <div class="pub-authors">AJ Milam, C Liang, <span class="me">J Mi</span>, EJ Mascha, S Halvorson, M Yan, E Soltesz, AE Duncan</div>
+          <div class="pub-venue">Anesthesia &amp; Analgesia, 136(3), 507&ndash;517</div>
+        </li>
+      </ul>
+
+      <div class="pub-year">2022</div>
+      <ul class="pub-list">
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1213/ANE.0000000000006081" target="_blank">Incidence, Outcomes, and Risk Factors for Preincision Cardiac Arrest in Cardiac Surgery Patients</a>
+          </div>
+          <div class="pub-authors">MA Geube, A Hsu, NJ Skubas, C Liang, <span class="me">J Mi</span>, KM Knuf, D Marciniak, MZ Tong, AE Duncan</div>
+          <div class="pub-venue">Anesthesia &amp; Analgesia, 135(6), 1189&ndash;1197</div>
+        </li>
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1213/ANE.0000000000006005" target="_blank">Effect of a Rapid Response Team on the Incidence of In-Hospital Mortality</a>
+          </div>
+          <div class="pub-authors">F Factora, K Maheshwari, S Khanna, P Chahar, M Ritchey, J O'Hara Jr, EJ Mascha, <span class="me">J Mi</span>, S Halvorson, A Turan, K Ruetzler</div>
+          <div class="pub-venue">Anesthesia &amp; Analgesia, 135(3), 595&ndash;604</div>
+        </li>
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1016/j.jacc.2021.11.036" target="_blank">Risk Stratification for Congenital Heart Surgery for ICD-10 Administrative Data (RACHS-2)</a>
+          </div>
+          <div class="pub-authors">P Allen, F Zafar, <span class="me">J Mi</span>, S Crook, J Woo, N Jayaram, R Bryant 3rd, T Karamlou, J Tweddell, K Dragan, S Cook, EL Hannan, JW Newburger, EA Bacha, R Vincent, K Nguyen, K Walsh-Spoonhower, R Mosca, N Devejian, SA Kamenir, GM Alfieris, MF Swartz, D Meyer, EA Paul, J Billings, BR Anderson</div>
+          <div class="pub-venue">Journal of the American College of Cardiology, 79(5), 465&ndash;478</div>
+        </li>
+      </ul>
+
+      <div class="pub-year">2021</div>
+      <ul class="pub-list">
+        <li>
+          <div class="pub-title">
+            <a href="https://doi.org/10.1542/peds.2021-051155" target="_blank">Longitudinal Outcomes for Multisystem Inflammatory Syndrome in Children</a>
+          </div>
+          <div class="pub-authors">KM Farooqi, A Chan, RJ Weller, <span class="me">J Mi</span>, P Jiang, E Abrahams, A Ferris, US Krishnan, N Pasumarti, S Suh, AM Shah, MP DiLorenzo, P Zachariah, JD Milner, EB Rosenzweig, M Gorelik, BR Anderson</div>
+          <div class="pub-venue">Pediatrics, 148(2)</div>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 Junhui Mi. All rights reserved.
+  </footer>
+
+  <script>
+    document.querySelectorAll('.tab-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Update active tab link
+        document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+
+        // Show corresponding content
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(this.dataset.tab).classList.add('active');
+
+        // Update URL hash
+        history.pushState(null, '', this.getAttribute('href'));
+      });
+    });
+
+    // Handle direct navigation via hash
+    window.addEventListener('load', function() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const link = document.querySelector(`.tab-link[data-tab="${hash}"]`);
+        if (link) link.click();
+      }
+    });
+  </script>
+</body>
+</html>
